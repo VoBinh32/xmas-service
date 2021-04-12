@@ -12,7 +12,7 @@ export interface IUser {
   name: string;
 }
 export interface ICart {
-  id: number;
+  id: string;
   date: Date;
   products: IProduct[];
   userId: string;
