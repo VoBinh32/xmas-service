@@ -1,0 +1,60 @@
+.welcome-tab-desktop {
+  align-items: flex-start;
+  display: flex;
+  height: 286px;
+  position: relative;
+  width: 1000px;
+}
+.illustration {
+  height: 250px;
+  left: 350px;
+  position: absolute;
+  top: 0px;
+  width: 350px;
+}
+.overlap-group {
+  height: 256px;
+  left: 55px;
+  position: absolute;
+  top: 10px;
+  width: 751px;
+}
+.subtitle {
+  font-weight: 300;
+  left: 0px;
+  letter-spacing: 0px;
+  line-height: 28px;
+  position: absolute;
+  top: 107px;
+  width: 411px;
+}
+
+.title {
+  left: 55px;
+  letter-spacing: 0px;
+  line-height: 50px;
+  position: absolute;
+  top: 50px;
+  white-space: nowrap;
+}
+.welcome-card-desktop {
+  background-size: 100% 100%;
+  border-radius: 5px;
+  height: 286px;
+  overflow: hidden;
+  position: relative;
+  width: 834px;
+}
+
+.castoro-regular-normal-black {
+  color: #07630ec7;
+  font-family: "Castoro-Regular", Helvetica;
+  font-size: $font-size-large;
+}
+.lato-light-black {
+  color: #ca1414;
+  font-family: "Lato", Helvetica;
+  font-size: $font-size-small;
+  font-style: normal;
+  font-weight: 300;
+}
