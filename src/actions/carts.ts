@@ -1,9 +1,9 @@
 import fakeStore from "../apis/fakeStore";
-import { v4 as uuidv4 } from "uuid";
-import { FetchUsers, fetchUsers } from "./children";
+import { fetchUser, fetchUsers } from "./children";
 import * as constants from "./types";
 import { ICart, IUser } from "../types";
 import { Dispatch } from "react";
+import { fetchProduct } from "./product";
 
 export interface FetchCart {
   type: constants.FETCH_CART;
@@ -15,12 +15,24 @@ export interface FetchCarts {
   payload: ICart[];
 }
 
-export const fetchCart = (userId: number) => async (
-  dispatch: Dispatch<FetchCart>
+export const fetchCart = (userId: string) => async (
+  dispatch: Dispatch<any>
 ) => {
   const response = await fakeStore.get(`/carts/user/${userId}`);
 
-  dispatch({ type: constants.FETCH_CART, payload: { ...response.data } });
+  const products = response.data[0].products;
+
+  products.forEach((product: { productId: number; quantity: number }) => {
+    const { productId } = product;
+    dispatch(fetchProduct(productId));
+  });
+
+  dispatch(fetchUser(response.data[0].userId));
+
+  dispatch({
+    type: constants.FETCH_CART,
+    payload: { ...response.data[0] },
+  });
 };
 
 export const fetchCarts = () => async (
@@ -39,7 +51,7 @@ export const fetchCarts = () => async (
     }
 
     const a = await Promise.all(promises);
-    const response = a.map((item: any) => ({ ...item.data[0], id: uuidv4() }));
+    const response = a.map((item: any) => ({ ...item.data[0] }));
 
     dispatch({
       type: constants.FETCH_CARTS,
