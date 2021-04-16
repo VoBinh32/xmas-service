@@ -1,4 +1,5 @@
 export interface IProduct {
+  userId?: number;
   id: number;
   title: string;
   price: number;
@@ -8,12 +9,15 @@ export interface IProduct {
   isDiscarded?: boolean;
 }
 export interface IUser {
-  id: number;
-  name: string;
+  id: string;
+  name: {
+    firstname: string;
+    lastname: string;
+  };
 }
 export interface ICart {
   id: string;
   date: Date;
-  products: IProduct[];
+  products: { productId: number; quantity: number }[];
   userId: string;
 }
