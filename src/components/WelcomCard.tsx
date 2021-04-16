@@ -1,14 +1,12 @@
-import xmas from "../styles/img/undraw_snow_globe_923j.png";
-
 type WelcomCardDesktopProps = {
-  illustration?: string;
+  illustration: string;
   subtitle: JSX.Element;
   title: string;
 };
 
 type WelcomCardProps = {
   welcomeCardDesktopProps: {
-    illustration?: string;
+    illustration: string;
     subtitle: JSX.Element;
     title: string;
   };
@@ -40,20 +38,4 @@ export const WelcomeCard = (props: WelcomCardProps) => {
       />
     </div>
   );
-};
-
-const welcomeCardData = {
-  illustration: xmas,
-  subtitle: (
-    <>
-      Santa, Santa, please stop here.
-      <br />
-      Fill our your kids Christmas with joy and cheer!{" "}
-    </>
-  ),
-  title: "Droppe Xmas",
-};
-
-export const WelcomeCardDesktopData = {
-  welcomeCardDesktopProps: welcomeCardData,
 };

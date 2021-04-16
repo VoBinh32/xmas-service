@@ -2,39 +2,25 @@ import React, { Dispatch, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUsers, ChildrenActions } from "../actions/children";
 import { fetchCarts, CartsActions } from "../actions/carts";
-import { ICart, IUser } from "../types";
+import capitalize from "../selectors/capitalize";
 import "../styles/styles.scss";
 import { AppState } from "../reducers/rootReducer";
-import { WelcomeCard, WelcomeCardDesktopData } from "./WelcomCard";
+import { WelcomeCard } from "./WelcomCard";
+import { Link } from "react-router-dom";
 import gift from "../styles/img/undraw_gift1_sgf8.png";
-
-// type CartListProps = {
-//   children: Object[];
-//   carts: Object[];
-//   fetchUsers: () => void;
-//   fetchCarts: () => void;
-// };
+import xmas from "../styles/img/undraw_snow_globe_923j.png";
+import { IUser } from "../types";
 
 export const CartList = () => {
-  const children = useSelector((state: AppState) =>
+  const children: IUser[] = useSelector((state: AppState) =>
     Object.values(state.children)
   );
-  const carts = useSelector((state: AppState) => Object.values(state.carts));
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCarts());
-  }, [dispatch]);
-
-  const capitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
-  const selectCardId = (userId: number) => {
-    const cardId = carts.find((cart) => cart.userId === userId).id;
-    return cardId;
-  };
+  }, []);
 
   const renderCards = () => {
     return children.map((child) => {
@@ -46,18 +32,30 @@ export const CartList = () => {
               {capitalize(child.name.firstname)}{" "}
               {capitalize(child.name.lastname)}
             </h1>
-            <button className="button-cart-list">Click here</button>
+            <Link className="link" to={`/child/${child.id}`}>
+              <button className="button-cart-list">Click here</button>
+            </Link>
           </div>
         </div>
       );
     });
   };
 
+  const welcomeCardData = {
+    illustration: xmas,
+    subtitle: (
+      <>
+        Santa, Santa, please stop here.
+        <br />
+        Fill our your kids Christmas with joy and cheer!{" "}
+      </>
+    ),
+    title: "Droppe Xmas",
+  };
+
   return (
     <div>
-      <WelcomeCard
-        welcomeCardDesktopProps={WelcomeCardDesktopData.welcomeCardDesktopProps}
-      />
+      <WelcomeCard welcomeCardDesktopProps={welcomeCardData} />
       <div className="container">{renderCards()}</div>
     </div>
   );
