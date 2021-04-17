@@ -19,9 +19,11 @@ const Product = ({
   id,
 }: ProductProps) => {
   const dispatch = useDispatch();
+
   const acceptProduct = () => {
     dispatch(approveProduct(userId, id));
   };
+
   const discardProduct = () => {
     dispatch(rejectProduct(userId, id));
   };
@@ -29,14 +31,14 @@ const Product = ({
     <div className="product-card">
       <img src={image} alt={title} />
 
-      <div className="product__info">
-        <p className="info__name">{title}</p>
+      <div className="product-info">
+        <p className="info-name">{title}</p>
 
-        <p className="info__description">
+        <p className="info-description">
           {description && description.substring(0, 100)}...
         </p>
 
-        <p className="info__price">${price}</p>
+        <p className="info-price">${price}</p>
       </div>
       <div>
         <button onClick={acceptProduct} className="button--tertiary">

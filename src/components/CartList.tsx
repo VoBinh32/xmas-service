@@ -1,15 +1,15 @@
-import React, { Dispatch, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsers, ChildrenActions } from "../actions/children";
-import { fetchCarts, CartsActions } from "../actions/carts";
-import capitalize from "../selectors/capitalize";
+import { Link } from "react-router-dom";
 import "../styles/styles.scss";
+import { fetchCarts } from "../actions/carts";
+import capitalize from "../selectors/capitalize";
+import { IUser } from "../types";
 import { AppState } from "../reducers/rootReducer";
 import { WelcomeCard } from "./WelcomCard";
-import { Link } from "react-router-dom";
+
 import gift from "../styles/img/undraw_gift1_sgf8.png";
 import xmas from "../styles/img/undraw_snow_globe_923j.png";
-import { IUser } from "../types";
 
 export const CartList = () => {
   const children: IUser[] = useSelector((state: AppState) =>
@@ -27,8 +27,8 @@ export const CartList = () => {
       return (
         <div key={child.id}>
           <div className="card">
-            <img src={gift} alt="Person" className="card__image" />
-            <h1 className="card__name">
+            <img src={gift} alt="Person" className="card-image" />
+            <h1 className="card-name">
               {capitalize(child.name.firstname)}{" "}
               {capitalize(child.name.lastname)}
             </h1>

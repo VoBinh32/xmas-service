@@ -8,7 +8,8 @@ import { ICart, IProduct, IUser } from "../types";
 import { WelcomeCard } from "./WelcomCard";
 import illustration from "../styles/img/undraw_happy_birthday_s72n.png";
 import Product from "./Product";
-import _ from "lodash";
+
+import { totalAmount } from "../selectors/total";
 
 interface ParamTypes {
   id: string;
@@ -22,30 +23,10 @@ export const CartProducts = () => {
     Object.values(state.carts)
   );
 
-  const sortByApproved = carts.map((cart: any) => {
-    return cart.products.filter(
-      (product: IProduct) => product.isDiscarded === false
-    );
-  });
-  console.log(sortByApproved);
-
-  //count as value and id as key
-  const count = _.countBy(_.flatMap(sortByApproved), "productId");
-
   const cart: ICart = useSelector((state: AppState) => state.carts[id]);
   const products: IProduct[] = useSelector((state: AppState) => state.products);
 
   let total: number = 0;
-
-  for (const [key, value] of Object.entries(count)) {
-    if (value === 1) {
-      total += products[parseInt(key)].price;
-    } else if (value === 2) {
-      total += products[parseInt(key)].price * 2 * 0.8;
-    } else if (value === 3) {
-      total += products[parseInt(key)].price * 3 * 0.7;
-    }
-  }
 
   useEffect(() => {
     dispatch(fetchCart(id));
@@ -81,21 +62,23 @@ export const CartProducts = () => {
     <div>
       {child && <WelcomeCard welcomeCardDesktopProps={welcomeCardData()} />}
       <div>
-        <h1 className="card__name"> Total Amount: ${total.toFixed(2)}</h1>
+        <h1 className="card-name">
+          {" "}
+          Total Amount: ${totalAmount(total, products, carts)}
+        </h1>
       </div>
 
       <div className="container">
         <div className="button-container">
           <Link className="link" to="/">
-            <button className="custom-btn btn-6">Back</button>
+            <button className="custom-btn btn-back">Back</button>
           </Link>
           <Link className="link" to="/checkout">
-            <button className="custom-btn btn-5">Checkout</button>
+            <button className="custom-btn btn-checkout">Checkout</button>
           </Link>
         </div>
         {cart && renderProducts()}
       </div>
-      {/* <div>{a()}</div> */}
     </div>
   );
 };

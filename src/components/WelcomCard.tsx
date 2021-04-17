@@ -19,9 +19,9 @@ const WelcomeCardDesktop = (props: WelcomCardDesktopProps) => {
     <div className="welcome-card-desktop">
       <div className="overlap-group">
         <img className="illustration" src={illustration} />
-        <div className="subtitle lato-light-black">{subtitle}</div>
+        <div className="subtitle lato-light">{subtitle}</div>
       </div>
-      <h1 className="title castoro-regular-normal-black">{title}</h1>
+      <h1 className="title castoro-regular-normal">{title}</h1>
     </div>
   );
 };
