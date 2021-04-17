@@ -1,17 +1,20 @@
 .container {
   display: flex;
+  margin: auto;
+  padding: 10px;
+  margin-left: 25px;
   justify-content: center;
   align-items: center;
-  height: 120vh;
-  background-color: #eeeeee;
-  font-family: "Castoro-Regular", Helvetica;
+  height: 100%;
+  background-color: $gray;
+  margin-top: 20px;
   flex-wrap: wrap;
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
 }
 
 .card {
+  margin: 30px;
   background-color: $light-pink;
-  margin-left: 20px;
-  margin-right: 20px;
   height: 20rem;
   border-radius: 7px;
   display: flex;
@@ -21,12 +24,12 @@
   color: rgb(230, 201, 201);
 }
 
-.card__name {
+.card-name {
   margin-top: 15px;
   font-size: 1.5em;
 }
 
-.card__image {
+.card-image {
   height: 160px;
   width: 160px;
   border-radius: 50%;
@@ -35,72 +38,16 @@
   box-shadow: 0 10px 50px rgb(199, 163, 163);
 }
 
-.draw-border {
-  box-shadow: inset 0 0 0 2.5px #07630ec7;
-  color: #f3e7e7;
-  -webkit-transition: color 0.25s 0.0833333333s;
-  transition: color 0.25s 0.0833333333s;
-  position: relative;
-}
-
-.draw-border::before,
-.draw-border::after {
-  border: 0 solid transparent;
-  box-sizing: border-box;
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  width: 0rem;
-  height: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.draw-border::before {
-  border-bottom-width: 4px;
-  border-left-width: 4px;
-}
-
-.draw-border::after {
-  border-top-width: 4px;
-  border-right-width: 4px;
-}
-
-.draw-border:hover {
-  color: #ffe593;
-}
-
-.draw-border:hover::before,
-.draw-border:hover::after {
-  border-color: $light-pink;
-  -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
-  transition: border-color 0s, width 0.25s, height 0.25s;
-  width: 100%;
-  height: 100%;
-}
-
-.draw-border:hover::before {
-  -webkit-transition-delay: 0s, 0s, 0.25s;
-  transition-delay: 0s, 0s, 0.25s;
-}
-
-.draw-border:hover::after {
-  -webkit-transition-delay: 0s, 0.25s, 0s;
-  transition-delay: 0s, 0.25s, 0s;
-}
-
 h1 {
-  --color1: #07630ec7;
-  --color2: #ca1414;
-  font-family: "Open Sans", sans-serif;
   text-align: center;
+
   font-size: 46px;
   background: repeating-linear-gradient(
     45deg,
-    var(--color1),
-    var(--color1) 30px,
-    var(--color2) 30px,
-    var(--color2) 60px
+    $green,
+    $green 30px,
+    $red 30px,
+    $red 60px
   );
   background-clip: text;
   color: transparent;
@@ -109,44 +56,37 @@ h1 {
 }
 
 .button-cart-list {
-  --light: #f2f5ee;
-  --dark: #69bc22;
-  --text: #025600;
   display: block;
   cursor: pointer;
   outline: none;
   border: none;
-  background-color: var(--light);
+  background-color: $gray;
   width: 200px;
   height: 35px;
   border-radius: 20px;
   font-size: 1rem;
   font-weight: 550;
-  color: var(--text);
+  color: $green;
   background-size: 70% 70%;
-  box-shadow: 0 0 0 7px var(--light) inset;
+  box-shadow: 0 0 0 7px $gray inset;
   margin: 18px;
 }
 
 .button-cart-list:hover {
-  --light: #92de34;
-  --dark: #69bc22;
-  --text: #025600;
-
   background-image: linear-gradient(
     145deg,
     transparent 10%,
-    var(--dark) 10% 20%,
+    $light-gray 10% 20%,
     transparent 20% 30%,
-    var(--dark) 30% 40%,
+    $light-gray 30% 40%,
     transparent 40% 50%,
-    var(--dark) 50% 60%,
+    $light-gray 50% 60%,
     transparent 60% 70%,
-    var(--dark) 70% 80%,
+    $light-gray 70% 80%,
     transparent 80% 90%,
-    var(--dark) 90% 100%
+    $light-gray 90% 100%
   );
-  animation: move 3s linear infinite;
+  animation: move 5s linear infinite;
 }
 @keyframes move {
   from {
@@ -155,4 +95,7 @@ h1 {
   to {
     background-position: 1000px;
   }
+}
+.link {
+  text-decoration: none;
 }
