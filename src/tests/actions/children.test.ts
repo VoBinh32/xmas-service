@@ -6,6 +6,7 @@ import fetchMock from "fetch-mock";
 import expect from "expect";
 import user from "../mocks/user";
 import users from "../mocks/users";
+import _ from "lodash";
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
@@ -32,19 +33,22 @@ describe("async actions", () => {
 
   it("creates FETCH_USERS when fetching users has been done", () => {
     fetchMock.get("https://fakestoreapi.com/carts?limit=4", {
-      body: { users: { ...users[0], ...users[1], ...users[2], ...users[3] } },
+      body: { users: { ...users[1], ...users[2], ...users[3], ...users[4] } },
       headers: { "content-type": "application/json" },
     });
     fetchMock.get("https://fakestoreapi.com/carts/user/8", {
-      body: { users: users[4] },
+      body: { users: users[8] },
       headers: { "content-type": "application/json" },
     });
 
-    const expectedActions = [{ type: types.FETCH_USERS, payload: users }];
+    const expectedActions = {
+      type: types.FETCH_USERS,
+      payload: Object.values(users),
+    };
     const store = mockStore({});
 
     return store.dispatch<any>(actions.fetchUsers()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+      expect(store.getActions()).toEqual([expectedActions]);
     });
   });
 });
