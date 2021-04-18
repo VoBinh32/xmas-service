@@ -21,9 +21,7 @@ describe("async actions", () => {
       headers: { "content-type": "application/json" },
     });
 
-    const expectedActions = [
-      { type: types.FETCH_USER, payload: { id: user.id, name: user.name } },
-    ];
+    const expectedActions = [{ type: types.FETCH_USER, payload: { ...user } }];
     const store = mockStore({});
 
     return store.dispatch<any>(actions.fetchUser(user.id)).then(() => {

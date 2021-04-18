@@ -18,12 +18,16 @@ interface ParamTypes {
 export const CartProducts = () => {
   const dispatch = useDispatch();
   const { id } = useParams<ParamTypes>();
-  const child: IUser = useSelector((state: AppState) => state.children[id]);
+  const child: IUser = useSelector(
+    (state: AppState) => state.children[parseInt(id)]
+  );
   const carts: ICart[] = useSelector((state: AppState) =>
     Object.values(state.carts)
   );
 
-  const cart: ICart = useSelector((state: AppState) => state.carts[id]);
+  const cart: ICart = useSelector(
+    (state: AppState) => state.carts[parseInt(id)]
+  );
   const products: IProduct[] = useSelector((state: AppState) => state.products);
 
   let total: number = 0;

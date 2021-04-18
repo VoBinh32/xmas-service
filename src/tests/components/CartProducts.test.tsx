@@ -1,19 +1,17 @@
-import { CartList } from "../../components/CartList";
+import { CartProducts } from "../../components/CartProducts";
 import { mount, shallow } from "enzyme";
 import * as reactRedux from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import children from "../mocks/users";
-import products from "../mocks/product";
+import products from "../mocks/products";
 import carts from "../mocks/carts";
 import { BrowserRouter } from "react-router-dom";
-import gift from "../../styles/img/undraw_gift1_sgf8.png";
-import xmas from "../../styles/img/undraw_snow_globe_923j.png";
+
 import { combineReducers, createStore } from "redux";
 import cartsReducer from "../../reducers/cartsReducer";
 import productsReducer from "../../reducers/productsReducer";
 import childrenReducer from "../../reducers/usersReducer";
-import { AppState } from "../../reducers/rootReducer";
 
 const initStore = (initialState: any) =>
   createStore(
@@ -28,12 +26,20 @@ const initStore = (initialState: any) =>
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-describe.only("CartList components", () => {
+describe.only("CartProducts components", () => {
   const shareState = {
-    children,
+    children: children[1],
     products,
     carts,
   };
+
+  jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useParams: () => ({
+      id: "1",
+    }),
+    useRouteMatch: () => ({ url: "/child/1" }),
+  }));
 
   const useSelectorMock = jest.spyOn(reactRedux, "useSelector");
   const useDispatchMock = jest.spyOn(reactRedux, "useDispatch");
@@ -56,16 +62,13 @@ describe.only("CartList components", () => {
     const component = mount(
       <reactRedux.Provider store={store}>
         <BrowserRouter>
-          <CartList />
+          <CartProducts />
         </BrowserRouter>
       </reactRedux.Provider>
     );
-    expect(component.find("WelcomeCard")).toHaveLength(1);
-    expect(component.find(".container")).toHaveLength(1);
-    expect(component.find("h1.card-name")).toHaveLength(5);
-    expect(component.find("Link")).toHaveLength(5);
-    expect(component.find("img").at(0).prop("src")).toEqual(xmas);
-    expect(component.find("img").at(1).prop("src")).toEqual(gift);
-    expect(component.find(".card")).toHaveLength(5);
+
+    expect(component.find("Link")).toHaveLength(2);
+    expect(component.find(".card-name")).toHaveLength(1);
+    expect(component.find("h3")).toHaveLength(1);
   });
 });

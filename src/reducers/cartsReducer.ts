@@ -9,7 +9,7 @@ import { ProductActions } from "../actions/product";
 import { ICart } from "../types";
 
 type CartsState = {
-  carts: { [key: string]: ICart };
+  carts: { [key: number]: ICart };
 };
 
 const initialState: CartsState = {

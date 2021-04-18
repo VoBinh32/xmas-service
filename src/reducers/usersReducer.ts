@@ -4,7 +4,7 @@ import { ChildrenActions } from "../actions/children";
 import { IUser } from "../types";
 
 type ChildrenState = {
-  children: { [key: string]: IUser };
+  children: { [key: number]: IUser };
 };
 
 const initialState: ChildrenState = {
