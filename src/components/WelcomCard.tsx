@@ -1,10 +1,10 @@
-type WelcomCardDesktopProps = {
+export type WelcomCardDesktopProps = {
   illustration: string;
   subtitle: JSX.Element;
   title: string;
 };
 
-type WelcomCardProps = {
+export type WelcomCardProps = {
   welcomeCardDesktopProps: {
     illustration: string;
     subtitle: JSX.Element;
@@ -12,7 +12,7 @@ type WelcomCardProps = {
   };
 };
 
-const WelcomeCardDesktop = (props: WelcomCardDesktopProps) => {
+export const WelcomeCardDesktop = (props: WelcomCardDesktopProps) => {
   const { illustration, subtitle, title } = props;
 
   return (
