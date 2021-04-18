@@ -1,5 +1,5 @@
-const users = [
-  {
+const users = {
+  1: {
     address: {
       geolocation: {
         lat: "-37.3159",
@@ -21,7 +21,7 @@ const users = [
     phone: "1-570-236-7033",
     __v: 0,
   },
-  {
+  2: {
     address: {
       geolocation: {
         lat: "-37.3159",
@@ -43,7 +43,7 @@ const users = [
     phone: "1-570-236-7033",
     __v: 0,
   },
-  {
+  3: {
     address: {
       geolocation: {
         lat: "40.3467",
@@ -65,7 +65,7 @@ const users = [
     phone: "1-567-094-1345",
     __v: 0,
   },
-  {
+  4: {
     address: {
       geolocation: {
         lat: "50.3467",
@@ -87,7 +87,7 @@ const users = [
     phone: "1-765-789-6734",
     __v: 0,
   },
-  {
+  8: {
     address: {
       geolocation: {
         lat: "50.3456",
@@ -109,5 +109,5 @@ const users = [
     phone: "1-478-001-0890",
     __v: 0,
   },
-];
+};
 export default users;
