@@ -8,7 +8,7 @@ import { ICart, IProduct, IUser } from "../types";
 import { WelcomeCard } from "./WelcomCard";
 import illustration from "../styles/img/undraw_happy_birthday_s72n.png";
 import Product from "./Product";
-
+import _ from "lodash";
 import { totalAmount } from "../selectors/total";
 
 interface ParamTypes {
@@ -31,16 +31,23 @@ export const CartProducts = () => {
   useEffect(() => {
     dispatch(fetchCart(parseInt(id)));
   }, [id]);
+  const count = _.countBy(_.flatMap(carts, "products"), "productId");
 
   const renderProducts = () => {
-    return cart.products.map((cartProduct: { productId: number }) => {
-      const product = products[cartProduct.productId];
+    const sortedProducts = cart.products
+      .map((cartProduct: { productId: number }) => {
+        return products[cartProduct.productId];
+      })
+      .filter((p) => p)
+      .sort((a, b) => a.price - b.price);
 
+    return sortedProducts.map((product) => {
       return (
         <Product
-          key={cartProduct.productId}
+          key={product.id}
           {...product}
           userId={parseInt(id)}
+          count={count[product.id]}
         />
       );
     });
@@ -66,6 +73,7 @@ export const CartProducts = () => {
           {" "}
           Total Amount: ${totalAmount(total, products, carts)}
         </h1>
+        <h3>*The list below is automatically sorted by amount</h3>
       </div>
 
       <div className="container">

@@ -8,6 +8,7 @@ type ProductProps = {
   price: number;
   description: string;
   image: string;
+  count: number;
 };
 
 const Product = ({
@@ -17,6 +18,7 @@ const Product = ({
   image,
   userId,
   id,
+  count,
 }: ProductProps) => {
   const dispatch = useDispatch();
 
@@ -33,7 +35,11 @@ const Product = ({
 
       <div className="product-info">
         <p className="info-name">{title}</p>
-
+        <span className="count">
+          {count &&
+            count > 1 &&
+            `This one has appeared ${count} times in your children lists. Get more to get discount!`}
+        </span>
         <p className="info-description">
           {description && description.substring(0, 100)}...
         </p>

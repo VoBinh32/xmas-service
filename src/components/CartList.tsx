@@ -20,7 +20,7 @@ export const CartList = () => {
 
   useEffect(() => {
     dispatch(fetchCarts());
-  }, []);
+  }, [dispatch]);
 
   const renderCards = () => {
     return children.map((child) => {
@@ -56,7 +56,7 @@ export const CartList = () => {
   return (
     <div>
       <WelcomeCard welcomeCardDesktopProps={welcomeCardData} />
-      <div className="container">{renderCards()}</div>
+      <div className="container">{children && renderCards()}</div>
     </div>
   );
 };
