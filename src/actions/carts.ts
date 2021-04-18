@@ -15,7 +15,7 @@ export interface FetchCarts {
   payload: ICart[];
 }
 
-export const fetchCart = (userId: string) => async (
+export const fetchCart = (userId: number) => async (
   dispatch: Dispatch<any>
 ) => {
   const response = await fakeStore.get(`/carts/user/${userId}`);

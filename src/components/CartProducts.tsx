@@ -29,7 +29,7 @@ export const CartProducts = () => {
   let total: number = 0;
 
   useEffect(() => {
-    dispatch(fetchCart(id));
+    dispatch(fetchCart(parseInt(id)));
   }, [id]);
 
   const renderProducts = () => {
