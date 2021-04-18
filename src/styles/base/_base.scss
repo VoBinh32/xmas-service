@@ -7,4 +7,12 @@ body {
   * {
     box-sizing: border-box;
   }
+  h3 {
+    color: #ca1414;
+    font-family: "Lato", Helvetica;
+    font-size: $font-size-small;
+    font-style: normal;
+    font-weight: 300;
+    margin-left: 50px;
+  }
 }
