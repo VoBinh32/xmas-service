@@ -1,5 +1,7 @@
 # Front-end Challenge
 
+[Click Here To Preview](https://droppe-xmas.herokuapp.com/)
+
 ## Clone my repo:
 
 ### `git clone https://github.com/VoBinh32/droppe-xmas`
